@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Add{% endblock title %}
+{% block body %}
+<div class="container my-4">
+    <form method="POST" action="/add">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" required class="form-control" id="title" name="title">
+            <input type="hidden" required class="form-control" id="user" name="user" value="{{request.user}}">
+        </div>
+        <div class="form-group">
+            <label for="desc">Blog Content</label>
+            <textarea class="form-control" required id="desc" name="desc" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-outline-info">Publish <i class="bi bi-box-arrow-up-right"></i></button>
+    </form>
+</div>
+{% endblock body %}

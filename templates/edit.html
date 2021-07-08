@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Edit{% endblock title %}
+{% block body %}
+<div class="container my-4">
+    <form method="POST" action="/edit/{{data.title_slug}}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" value="{{data.title}}" required class="form-control" id="title" name="title" >
+        </div>
+        <div class="form-group">
+            <label for="desc">Blog Content</label>
+            <textarea class="form-control" required id="desc" name="desc" rows="10">{{data.desc}}</textarea>
+        </div>
+        <button type="submit" class="btn btn-outline-info">Publish <i class="bi bi-box-arrow-up-right"></i></button>
+    </form>
+</div>
+{% endblock body %}
