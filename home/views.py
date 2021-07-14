@@ -82,13 +82,13 @@ def userSignup(request):
             return redirect('/')
         user = MyUser.objects.create_user(
             email=email, date_of_birth=dob, mobile=mobile, auth_token=auth_token, full_name=fullname, password=password)
-        send_mail_after_registration(email, auth_token)
-        messages.success(
-            request, 'We have sent you an email!! Please Check Your email and verify Your account')
-        return redirect('/')
-        # messages.success(request, 'SignUp Successful')
-        # login(request, user)
+        # send_mail_after_registration(email, auth_token)
+        # messages.success(
+        #     request, 'We have sent you an email!! Please Check Your email and verify Your account')
         # return redirect('/')
+        messages.success(request, 'SignUp Successful')
+        login(request, user)
+        return redirect('/')
     else:
         # No backend authenticated the credentials
         messages.error(request, 'Something Went Wrong')
