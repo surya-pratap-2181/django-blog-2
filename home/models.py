@@ -23,7 +23,7 @@ class Blog(models.Model):
 # From django documentation custom user model creation
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, email, date_of_birth, mobile, full_name, password=None):
+    def create_user(self, email, date_of_birth, mobile, auth_token, full_name, password=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -36,13 +36,14 @@ class MyUserManager(BaseUserManager):
             date_of_birth=date_of_birth,
             mobile=mobile,
             full_name=full_name,
+            auth_token=auth_token,
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, date_of_birth, mobile, full_name, password=None):
+    def create_superuser(self, email, date_of_birth, mobile, auth_token, is_verified, full_name, password=None):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
@@ -53,7 +54,9 @@ class MyUserManager(BaseUserManager):
             date_of_birth=date_of_birth,
             mobile=mobile,
             full_name=full_name,
+            auth_token=auth_token,
         )
+        user.is_verified = True
         user.is_admin = True
         user.save(using=self._db)
         return user
@@ -67,9 +70,11 @@ class MyUser(AbstractBaseUser):
     )
     full_name = models.CharField(max_length=100, default=None)
     date_of_birth = models.DateField()
-    mobile = models.CharField(max_length=14, unique=True)
+    mobile = models.CharField(max_length=14)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    auth_token = models.CharField(max_length=100)
+    is_verified = models.BooleanField(default=False)
 
     objects = MyUserManager()
 

@@ -1,8 +1,33 @@
 {% extends 'base.html' %}
 {% block title %}Blog{% endblock title %}
 {% block body %}
+<style>
+    h1 {
+        font-size: 60px;
+        color: #e23a6e;
+        margin-bottom: 10px;
+        text-shadow: 0px 1px 1px #000;
+    }
+
+    p {
+        color: rgba(0, 0, 0, 0.767);
+    }
+
+    .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+</style>
 <div class="container my-5">
-    <h1 class="text-center my-3"> {{ data.title }} </h1>
-    <p> {{data.desc}} </p>
+    <div class="center">
+        <h1 class="text-center my-3"> {{ data.title }} </h1>
+        <p> {{data.desc}} </p>
+        <br>
+        <h6 class="text-right  text-muted"> - {{data.user.full_name}}</h6>
+        <h6 class="text-right  text-muted">{{data.timestamp}}</h6>
+    </div>
 </div>
 {% endblock body %}
