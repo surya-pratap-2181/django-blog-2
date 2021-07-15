@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from home.models import Blog, MyUser
+from home.models import Blog, Contact, MyUser
 from django.utils import timezone
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -19,6 +19,17 @@ def index(request):
     context = {"data": data}
     return render(request, "index.html", context)
 
+
+def contact(request):
+    if request.method == "POST":
+        name = request.POST['name']
+        email = request.POST['email']
+        feedback = request.POST['feedback']
+        contact_obj = Contact(name=name, email=email, feedback=feedback)
+        contact_obj.save()
+        messages.success(request, "Your Message Has Been Sent")
+        return redirect('/')
+    return render(request, "contact.html")
 
 # def userLogin(request):
 #     try:

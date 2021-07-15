@@ -1,5 +1,5 @@
 from django.contrib import admin
-from home.models import Blog
+from home.models import Blog, Contact
 from django import forms
 from django.contrib import admin
 from django.contrib.auth.models import Group
@@ -90,4 +90,5 @@ admin.site.unregister(Group)
 
 # Register your models here.
 admin.site.register(Blog)
+admin.site.register(Contact)
 # admin.site.register(Bloguser)

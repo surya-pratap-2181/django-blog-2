@@ -20,7 +20,15 @@ class Blog(models.Model):
         return self.title
 
 
+class Contact(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField(max_length=255)
+    feedback = models.TextField()
+
+    def __str__(self):
+        return self.name
 # From django documentation custom user model creation
+
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email, date_of_birth, mobile, auth_token, full_name, password=None):
