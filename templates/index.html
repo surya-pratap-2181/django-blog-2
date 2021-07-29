@@ -51,14 +51,14 @@
                     <p class="card-text mb-auto">{{element.desc |truncatechars:80}}</p>
                     <div class="my-1 text-muted text-right">- {{element.user.full_name}}</div>
                     <div class="row">
-                        <a href="/blog/{{element.title_slug}}" class="btn btn-success btn-sm">Continue reading <i
+                        <a href=" {% url 'blog' element.title_slug %}" class="btn btn-success btn-sm">Continue reading <i
                                 class="bi bi-book-half"></i></a>
                         {% if request.user.is_authenticated and request.user == element.user %}
-                        <a href="/edit/{{element.title_slug}}" class="btn btn-info btn-sm mx-2" type="button">Edit <i
+                        <a href=" {% url 'blogedit' element.title_slug %}" class="btn btn-info btn-sm mx-2" type="button">Edit <i
                                 class="bi bi-pencil-square"></i></a>
                         {% endif %}
                         {% if request.user.is_authenticated and request.user == element.user or request.user.is_admin %}
-                        <a href="/delete/{{element.id}}" class="btn btn-danger btn-sm ml-1">Delete <i
+                        <a href=" {% url 'blogdelete' element.id %}" class="btn btn-danger btn-sm ml-1">Delete <i
                                 class="bi bi-trash-fill"></i></a>
                         {% endif %}
                     </div>

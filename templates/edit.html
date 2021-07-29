@@ -2,7 +2,7 @@
 {% block title %}Edit{% endblock title %}
 {% block body %}
 <div class="container my-4">
-    <form method="POST" action="/edit/{{data.title_slug}}">
+    <form method="POST" action="{% url 'edit' data.title_slug %}">
         {% csrf_token %}
         <div class="form-group">
             <label for="title">Title</label>

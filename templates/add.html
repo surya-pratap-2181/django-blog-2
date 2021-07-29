@@ -2,7 +2,7 @@
 {% block title %}Add{% endblock title %}
 {% block body %}
 <div class="container my-4">
-    <form method="POST" action="/add">
+    <form method="POST" action="{% url 'add' %}">
         {% csrf_token %}
         <div class="form-group">
             <label for="title">Title</label>
